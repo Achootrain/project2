@@ -41,7 +41,7 @@ const Login = ({ showLogin, setShowLogin }) => {
               <div className=" relative text-gray-900">
                 <div className="flex justify-center items-center ">
                   <h1 className="text-3xl font-bold text-center mb-6 pt-4" >
-                    Login
+                    Sign in
                   </h1>
                   <IoCloseOutline className="absolute top-0 right-0 text-3xl font-bold text-gray-950 cursor-pointer"
                     onClick={() => setShowLogin(false)} />

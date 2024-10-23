@@ -20,7 +20,7 @@ const Nav = ({ HandleLogin }) => {
         <header class="p-[28px] mx-auto text-white mb-10">
           <nav class="flex flex-row justify-between items-center relative">
             <div class="logo basis-1/6 text-start text-2xl font-semibold cursor-pointer ml-8">
-              Logo
+              ProjectHub
             </div>
             <ul
               id="tuan-top-menu"
