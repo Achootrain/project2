@@ -1,7 +1,7 @@
 import React from "react";
-import Nav from "./component/Nav";
+import Nav from "./component/Home/Nav";
 import Register from "./component/Register";
-import Home from "./component/Home";
+import Home from "./component/Home/Home";
 import Login from "./component/Login";
 import Form from "./component/Form";
 import './App.css';
