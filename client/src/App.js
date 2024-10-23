@@ -1,11 +1,22 @@
-import React from 'react';
+import React from "react";
+import Nav from "./component/Nav";
+import Register from "./component/Register";
+import Home from "./component/Home";
+import Login from "./component/Login";
+import Form from "./component/Form";
+import './App.css';
+import { Route, Routes } from "react-router-dom";
 
 function App() {
- 
   return (
-    <div className="bg-emerald-600 text-white text-center">
-      hello
-
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Nav" element={<Nav />} />
+        <Route path="/Register" element={<Register />} />
+        <Route path="/Form" element={<Form />} />
+      </Routes>
     </div>
   );
 }

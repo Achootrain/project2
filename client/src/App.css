@@ -1,38 +1,22 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.tuan-top-menu-item {
+  @apply cursor-pointer relative after:lg:absolute after:lg:bottom-0 after:lg:left-0 after:lg:bg-white after:lg:h-0.5 after:lg:w-0 
+    hover:after:lg:w-full hover:after:shadow-[0_0_15px_3px_rgba(255,255,255,0.6)] after:lg:transition-all after:lg:ease-in-out after:lg:duration-300;
+}
+.tuan-icon {
+  @apply w-5 h-5 inline-block;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.tuan-top-menu-expanded {
+  @apply absolute top-20 z-50 w-full text-center bg-white animate-slideDown text-gray-900 rounded-md;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.tuan-sub-line {
+  @apply w-8 h-px bg-gray-300;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tuan-sub-label {
+  @apply uppercase mx-4 tracking-widest  font-semibold text-[13px] text-center text-white;
 }
