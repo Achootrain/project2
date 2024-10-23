@@ -27,8 +27,8 @@ const Login = ({ showLogin, setShowLogin }) => {
       {showLogin && (
         <div>
           <div className="h-screen w-screen fixed top-0 left-0 bg-black/50 z-50 backdrop-blur-[2px]">
-            <div className="w-[340px] h-[420px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 shadow-md bg-white
-            rounded-3xl animate-fadeIn">
+            <div className="w-[340px] h-[420px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4  bg-white
+            rounded-3xl animate-fadeIn shadow-[0_0_15px_3px_rgba(255,255,255,0.6)]">
               <div className=" relative text-gray-900">
                 <div className="flex justify-center items-center ">
                   <h1 className="text-3xl font-bold text-center mb-6 pt-4" >
