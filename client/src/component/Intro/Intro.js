@@ -12,18 +12,18 @@ const BGStyle1 = {
   height: "100%", // Chiều cao toàn màn hình
 };
 
-const Home = () => {
+const Intro = () => {
   const [showLogin, setShowLogin] = useState(false);
   const HandleLogin = () => {
     setShowLogin(true);
-  }
+  };
 
   return (
-    <div style={BGStyle1}>
+    <div style={BGStyle1} className="m-0">
       <Nav HandleLogin={HandleLogin} />
       <Login showLogin={showLogin} setShowLogin={setShowLogin} />
     </div>
   );
 };
 
-export default Home;
+export default Intro;
