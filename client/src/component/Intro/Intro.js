@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Nav from "./Nav";
-import BG1 from "../../img/bg.jpg";
+import BG1 from "../../assets/img/bg.jpg";
 import Login from "../Login";
 
 const BGStyle1 = {
