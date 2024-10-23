@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdEmail } from "react-icons/md";
-import axios from 'axios';
+import axios from "axios";
 
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
@@ -19,16 +19,19 @@ const Login = () => {
     const account = { username, password };
     try {
       // send login request.
-      const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/users/login`, account)
+      const res = await axios.post(
+        `${process.env.REACT_APP_SERVER}/api/users/login`,
+        account
+      );
       // response
-      console.log("RESPONSE: ", res.data)
+      console.log("RESPONSE: ", res.data);
     } catch (e) {
-      console.error(e.response.data.message)
+      console.error(e.response.data.message);
     }
   };
 
   return (
-    <div className="h-[100vh]  text-white bg-violet-300 flex justify-center items-center">
+    <div className="h-[100vh]  text-black bg-white flex justify-center items-center">
       <div className="bg-slate-800 border border-slate-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative">
         <h1 className="text-4xl text-white font-bold text-center mb-6">
           Login
