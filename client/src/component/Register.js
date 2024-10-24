@@ -91,7 +91,7 @@ const Register = () => {
             </Link>
           </button>
         </form>
-        <div>
+        <div className="text-center">
           <span className="m-4">
             Already have an Account!
             <Link
