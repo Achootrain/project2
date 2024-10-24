@@ -13,7 +13,7 @@ const BGStyle2 = {
   borderRadius: "15px",
 };
 */
-const Nav = ({ HandleLogin, HandleSignup }) => {
+const Nav = ({ HandleLogin }) => {
   return (
     <div className="">
       <div class="content-wrapper font-karla max-w-screen-2xl text-base px-10 mx-auto">
@@ -52,13 +52,6 @@ const Nav = ({ HandleLogin, HandleSignup }) => {
                   onClick={HandleLogin}
                 >
                   Sign In
-                </span>
-                <span
-                  class="mx-4  uppercase border-2 rounded-md w-max tracking-wider px-4 py-2 text-xl font-semibold
-                    hover:text-gray-950 hover:bg-white hover:shadow-[0_0_15px_3px_rgba(255,255,255,0.6)]"
-                  onClick={HandleSignup}
-                >
-                  Sign Up
                 </span>
               </div>
             </ul>

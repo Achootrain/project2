@@ -19,13 +19,10 @@ const Intro = () => {
   const HandleLogin = () => {
     setShowLogin(true);
   };
-  const HandleSignup = () => {
-    setShowSignup(true);
-  };
 
   return (
     <div style={BGStyle1} className="m-0">
-      <Nav HandleLogin={HandleLogin} HandleSignup={HandleSignup} />
+      <Nav HandleLogin={HandleLogin} />
       <Login showLogin={showLogin} setShowLogin={setShowLogin} setShowSignup={setShowSignup} />
       <Register showSignup={showSignup} setShowSignup={setShowSignup} setShowLogin={setShowLogin} />
     </div>

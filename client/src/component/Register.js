@@ -8,7 +8,7 @@ const Register = ({ showSignup, setShowSignup, setShowLogin }) => {
       {showSignup && (
         <div>
           <div className="h-screen w-screen fixed top-0 left-0 bg-black/50 z-50 backdrop-blur-[2px]">
-            <div className="sm:w-[80vw] md:w-[60vw] lg:w-[50vw] xl:w-[26vw] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-slate-400 rounded-3xl p-8 
+            <div className="w-[50vw] md:w-[40%] lg:w-[360px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-slate-400 rounded-3xl p-8 
              bg-white animate-fadeIn shadow-[0_0_15px_3px_rgba(255,255,255,0.6)]">
               <div className="flex justify-center items-center ">
                 <h1 className="text-4xl font-bold text-center mb-6 ">Sign up</h1>
@@ -104,14 +104,14 @@ const Register = ({ showSignup, setShowSignup, setShowLogin }) => {
                 <span className="m-4">
                   Already have an Account!
                   <span
-                    className="text-blue-500 hover:underline hover: underline-offset-1 px-2 text-[18px]"
+                    className="text-blue-500 hover:underline hover: underline-offset-1 px-2 text-[18px] cursor-pointer"
                     onClick={() => {
                       setShowLogin(true);
                       setShowSignup(false);
                     }
                     }
                   >
-                    Login
+                    Sign in
                   </span>
                 </span>
               </div>
