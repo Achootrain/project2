@@ -13,7 +13,7 @@ const BGStyle2 = {
   borderRadius: "15px",
 };
 */
-const Nav = ({ HandleLogin }) => {
+const Nav = ({ HandleLogin, HandleSignup }) => {
   return (
     <div className="">
       <div class="content-wrapper font-karla max-w-screen-2xl text-base px-10 mx-auto">
@@ -29,12 +29,14 @@ const Nav = ({ HandleLogin }) => {
               <li class="tuan-top-menu-item">
                 <Link to="/">Home</Link>
               </li>
+              {/*
               <li class="tuan-top-menu-item">
                 <Link to="/">Product</Link>
               </li>
               <li class="tuan-top-menu-item">
                 <Link to="/">Blog</Link>
               </li>
+               */}
               <li class="tuan-top-menu-item">
                 <Link to="/">About</Link>
               </li>
@@ -42,14 +44,21 @@ const Nav = ({ HandleLogin }) => {
                 <Link to="/">Contact</Link>
               </li>
             </ul>
-            <ul class="basis-4/6 lg:basis-1/6 flex justify-end lg:justify-end items-center uppercase text-xl font-medium ml-[50px]">
-              <div class="flex items-center cursor-pointer">
+            <ul class="basis-4/6 lg:basis-1/6 flex justify-end  items-center uppercase text-xl font-medium ml-14">
+              <div class="flex items-center  cursor-pointer">
                 <span
-                  class="mx-4 lg:mx-20 uppercase border-2 rounded-md w-max tracking-wider px-4 py-2 text-xl font-semibold
+                  class="mx-4  uppercase border-2 rounded-md w-max tracking-wider px-4 py-2 text-xl font-semibold
                     hover:text-gray-950 hover:bg-white hover:shadow-[0_0_15px_3px_rgba(255,255,255,0.6)]"
                   onClick={HandleLogin}
                 >
                   Sign In
+                </span>
+                <span
+                  class="mx-4  uppercase border-2 rounded-md w-max tracking-wider px-4 py-2 text-xl font-semibold
+                    hover:text-gray-950 hover:bg-white hover:shadow-[0_0_15px_3px_rgba(255,255,255,0.6)]"
+                  onClick={HandleSignup}
+                >
+                  Sign Up
                 </span>
               </div>
             </ul>
@@ -102,7 +111,7 @@ const Nav = ({ HandleLogin }) => {
             </div>
           </div>
 
-          <div class="mt-[120px] w-full h-full flex justify-center items-center text-white">
+          <div class="mt-[10px] w-full h-full flex justify-center items-center text-white">
             <div class=" text-center px-4 sm:px-16 md:px-32 lg:px-64 xl:px-[272px]">
               {/* <div class="">
                 <a href="#"

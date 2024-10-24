@@ -9,7 +9,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { IoCloseOutline } from "react-icons/io5";
 
-const Login = ({ showLogin, setShowLogin }) => {
+const Login = ({ showLogin, setShowLogin, setShowSignup }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
@@ -39,8 +39,8 @@ const Login = ({ showLogin, setShowLogin }) => {
     <>
       {showLogin && (
         <div>
-          <div className="h-screen w-screen fixed top-0 left-0 bg-black/50 z-50 backdrop-blur-[2px]">
-            <div className="w-[340px] h-[420px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4  bg-white
+          <div className="h-screen w-screen fixed top-0 left-0 bg-black/50 z-50 backdrop-blur-[2px] ">
+            <div className=" w-[290px]  sm:w-[320px]  fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4  bg-white
             rounded-3xl animate-fadeIn shadow-[0_0_15px_3px_rgba(255,255,255,0.6)]">
               <div className=" relative text-gray-900">
                 <div className="flex justify-center items-center ">
@@ -56,7 +56,7 @@ const Login = ({ showLogin, setShowLogin }) => {
                   <div className="relative my-4 p-2 pt-4 border-2 border-black rounded-lg">
                     <input
                       type="email"
-                      className="block w-72 py-2.3 px-0 text-lg bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0  focus:border-blue-600 peer"
+                      className="block w-full py-2.3 px-0 text-lg bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0  focus:border-blue-600 peer"
 
                       onChange={(e) => setUsername(e.target.value)}
                     ></input>
@@ -73,7 +73,7 @@ const Login = ({ showLogin, setShowLogin }) => {
                   <div className="relative mb-2 p-2 pt-4 border-2 border-black rounded-lg">
                     <input
                       type={showPass ? "text" : "password"}
-                      className="block w-72 py-2.3 px-0 text-lg bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0  focus:border-blue-600 peer"
+                      className="block w-full py-2.3 px-0 text-lg bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0  focus:border-blue-600 peer"
                       onChange={(e) => setPassword(e.target.value)}
                     ></input>
                     <label
@@ -111,12 +111,15 @@ const Login = ({ showLogin, setShowLogin }) => {
                     Login
                   </button>
                 </form>
-                <div className="flex justify-center">
+                <div className="flex justify-center mb-4">
                   <span>
                     New Here?
-                    <Link className="text-blue-500 px-2" to="/Register">
+                    <span className="text-blue-500 px-2 cursor-pointer hover:underline hover: underline-offset-2"
+                      onClick={() => { setShowLogin(false); { setShowSignup(true); } }}
+                    >
+
                       Create an Account
-                    </Link>
+                    </span>
                   </span>
                 </div>
               </div>

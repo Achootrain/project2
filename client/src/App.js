@@ -3,7 +3,6 @@ import Nav from "./component/Intro/Nav";
 import Register from "./component/Register";
 import Intro from "./component/Intro/Intro";
 import Login from "./component/Login";
-import Form from "./component/Form";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
@@ -15,7 +14,6 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Nav" element={<Nav />} />
         <Route path="/Register" element={<Register />} />
-        <Route path="/Form" element={<Form />} />
       </Routes>
     </div>
   );
