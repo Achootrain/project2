@@ -45,7 +45,10 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE'
     });
     // ====================================================
-
+    Reports.belongsTo(models["Users"], {
+      foreignKey: "user_id",
+      onDelete: "CASCADE",
+    });
   };
 
   return Reports;
