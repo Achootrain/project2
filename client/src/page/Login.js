@@ -4,38 +4,48 @@ import { MdEmail } from "react-icons/md";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { IoCloseOutline } from "react-icons/io5";
-import axios from 'axios';
+import axios from "axios";
+
+import { FaUser } from "react-icons/fa";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [showPass, setShowPass] = useState(false);
-  const navigate = useNavigate()
+  const [forgotPass, setForgotPass] = useState(false);
+  const navigate = useNavigate();
 
   const handleShowPass = () => {
     setShowPass(!showPass);
   };
 
+  const handleForgotPass = () => {
+    setForgotPass(!forgotPass);
+  };
+
   // Handle login ====================== author: Hai
   const handleLogin = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const account = { username, password };
     try {
-      const res = await axios.post(`${process.env.REACT_APP_SERVER}/users/login`, account)
+      const res = await axios.post(
+        `${process.env.REACT_APP_SERVER}/users/login`,
+        account
+      );
 
       // Login thành công
       if (res?.data?.success) {
-        sessionStorage.setItem('token', res.data.token);
-        navigate('/page/Profile')
-      } else throw new Error("Login response err !")
+        sessionStorage.setItem("token", res.data.token);
+        navigate("/page/Profile");
+      } else throw new Error("Login response err !");
     } catch (err) {
       // Login không được, xử lý login k thành công: (để trống, sai,..)
-      if (err.code === 'ERR_NETWORK') {
-        console.error("Server is NOT responding !"); alert("🫤 Server is NOT responding !")
-
+      if (err.code === "ERR_NETWORK") {
+        console.error("Server is NOT responding !");
+        alert("🫤 Server is NOT responding !");
       } else {
-        console.error(err.response?.data?.message)
-
+        console.error(err.response?.data?.message);
       }
     }
   };
@@ -51,7 +61,7 @@ function Login() {
           <div className=" relative text-gray-900">
             <div className="flex justify-center items-center ">
               <h1 className="text-3xl font-bold text-center mb-6 pt-4">
-                Sign in
+                {forgotPass ? "Reset Password" : "Sign in"}
               </h1>
 
               <Link to="/">
@@ -59,32 +69,42 @@ function Login() {
               </Link>
             </div>
             <form action="">
+              {/* {Username} */}
               <div className="relative my-4 p-2 pt-4 border-2 border-black rounded-lg">
                 <input
                   type="text"
-                  className="block w-72 py-2.3 px-0 text-lg bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0  focus:border-blue-600 peer"
-                  onChange={(e) => setUsername(e.target.value)}
+                  className="block w-full py-2.3 pr-7 text-lg bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0  focus:border-blue-600 peer"
+                  onChange={(e) => {
+                    if (forgotPass) setEmail(e.target.value);
+                    else setUsername(e.target.value);
+                  }}
                 ></input>
 
                 <label
                   htmlFor=""
                   className="absolute text-lg  duration-300 transform -translate-y-5 scale-75 top-4  -z-10 origin-[0] peer-focus:left peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75"
                 >
-                  Username
+                  {forgotPass ? "Email" : "User name"}
                 </label>
-                <MdEmail className="absolute right-3 top-4 size-6"></MdEmail>
+                {forgotPass ? (
+                  <MdEmail className="absolute right-3 top-4 size-6" />
+                ) : (
+                  <FaUser className="absolute right-3 top-4 size-6" />
+                )}
               </div>
+
+              {/* Password */}
               <div className="relative mb-2 p-2 pt-4 border-2 border-black rounded-lg">
                 <input
                   type={showPass ? "text" : "password"}
-                  className="block w-72 py-2.3 px-0 text-lg bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0  focus:border-blue-600 peer"
+                  className="block w-72 py-2.3 pr-7 text-lg bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0  focus:border-blue-600 peer"
                   onChange={(e) => setPassword(e.target.value)}
                 ></input>
                 <label
                   htmlFor=""
                   className="absolute text-lg  duration-300 transform -translate-y-5 scale-75  top-4 -z-10 origin-[0] peer-focus:left peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 "
                 >
-                  Password
+                  {forgotPass ? "New password" : "Password"}
                 </label>
                 <button
                   type="button"
@@ -98,22 +118,42 @@ function Login() {
                   )}
                 </button>
               </div>
-              <div className="flex justify-between items-center ">
-                <div className="flex">
-                  <input type="checkbox" name="" id=""></input>
-                  <label htmlFor="">Remember Me</label>
+
+              {!forgotPass && (
+                <div className="flex justify-between items-center ">
+                  <div className="flex">
+                    <input type="checkbox" name="" id=""></input>
+                    <label htmlFor="">Remember Me</label>
+                  </div>
+
+                  {/* Forgot PassWord */}
+
+                  <button
+                    type="button"
+                    className="text-blue-500"
+                    onClick={handleForgotPass}
+                  >
+                    Forgot Password?
+                  </button>
                 </div>
-                <Link to="" className="text-blue-500">
-                  Forgot Password?
-                </Link>
-              </div>
-              <button
-                type="submit"
-                className="w-full mb-4 py-2 text-[18px] mt-6 rounded-lg bg-red-600 text-black hover:bg-black hover:text-white"
-                onClick={handleLogin}
-              >
-                Login
-              </button>
+              )}
+
+              {forgotPass ? (
+                <button
+                  type="submit"
+                  className="w-full mb-4 py-2 text-[18px] mt-6 rounded-lg bg-red-600 text-black hover:bg-black hover:text-white"
+                >
+                  Reset Password
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="w-full mb-4 py-2 text-[18px] mt-6 rounded-lg bg-red-600 text-black hover:bg-black hover:text-white"
+                  onClick={handleLogin}
+                >
+                  Login
+                </button>
+              )}
             </form>
             <div className="flex justify-center">
               <span>

@@ -7,11 +7,10 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // bien nay de kiem tra xem mk nhap lai co dung ko
   const [showError, setShowError] = useState(false);
-
 
   useEffect(() => {
     if (password === confirmPass) setShowError(false);
@@ -20,33 +19,36 @@ function Register() {
 
   // Handle register ===================== author: Hai
   const handleRegister = async (e) => {
-    e.preventDefault()
-    const newAccount = { name: fullName, username, email, password }
+    e.preventDefault();
+    const newAccount = { name: fullName, username, email, password };
 
     try {
-      if (newAccount.name.trim() === "") throw new Error("Name can not be empty !");
-      if (newAccount.username.trim() === "") throw new Error("Username can not be empty !");
+      if (newAccount.name.trim() === "")
+        throw new Error("Name can not be empty !");
+      if (newAccount.username.trim() === "")
+        throw new Error("Username can not be empty !");
 
-      const res = await axios.post(`${process.env.REACT_APP_SERVER}/users/sign-up`, newAccount)
+      const res = await axios.post(
+        `${process.env.REACT_APP_SERVER}/users/sign-up`,
+        newAccount
+      );
 
       // Đăng ký thành công
       if (res?.data?.success) {
-        console.log(res.data)
+        console.log(res.data);
         setTimeout(() => {
-          navigate("/page/Login")
+          navigate("/page/Login");
         }, 200);
-      } else throw new Error("Response err !")
+      } else throw new Error("Response err !");
     } catch (err) {
-      if (err.code === 'ERR_NETWORK') {
-        console.error("Server is NOT responding !"); alert("🫤 Server is NOT responding !")
-
+      if (err.code === "ERR_NETWORK") {
+        console.error("Server is NOT responding !");
+        alert("🫤 Server is NOT responding !");
       } else {
         console.error(err.message);
-
       }
     }
-
-  }
+  };
   // =====================================================
 
   return (
@@ -119,8 +121,9 @@ function Register() {
           {/*Confirm Password */}
 
           <div
-            className={`relative  my-2 p-2 pt-4 border-2 rounded-lg ${showError ? "border-red-600" : "border-black"
-              } `}
+            className={`relative  my-2 p-2 pt-4 border-2 rounded-lg ${
+              showError ? "border-red-600" : "border-black"
+            } `}
           >
             <input
               className="block w-full py-2.3 px-0 text-lg  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -133,7 +136,6 @@ function Register() {
               Confirm password
             </label>
           </div>
-
         </form>
 
         {/* Hien thong bao nhap mk ko dung */}
@@ -145,7 +147,14 @@ function Register() {
 
         {/* Nut tao tk moi */}
         <button
-          disabled={showError || !username || !fullName || !email || !password || !confirmPass}
+          disabled={
+            showError ||
+            !username ||
+            !fullName ||
+            !email ||
+            !password ||
+            !confirmPass
+          }
           type="submit"
           className="w-1/2 mb-4 py-2 text-[18px] mt-6 rounded-lg bg-red-600 text-black hover:bg-black hover:text-white"
           onClick={handleRegister}

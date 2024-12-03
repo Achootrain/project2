@@ -15,7 +15,7 @@ const { where } = require('sequelize')
 */
 router.get('/', validateToken, async (req, res) => {
     const user_id = req.user['user'].id
-    const { project_id } = req.body
+    const { project_id } = req.query;
     try {
         // check isParticipant-------
         const joiner_Joined = await ProjectJoineds.findOne({
@@ -42,7 +42,6 @@ router.get('/', validateToken, async (req, res) => {
             throw err;
         }
 
-        console.log(tasks)
         return res.json({ success: true, message: "Response all tasks in this projects ", tasks })
 
     } catch (err) {
@@ -106,7 +105,6 @@ router.post('/create-task', validateToken, async (req, res) => {
 }
 */
 router.delete('/delete-task', validateToken, async (req, res) => {
-    // manager -
     const manager_id = req.user['user'].id;
     const { task_id, project_id } = req.body
 
@@ -120,12 +118,12 @@ router.delete('/delete-task', validateToken, async (req, res) => {
             }
         })
         if (!Joined_record) {
-            const err = new Error(`Server: Logined user does not as MANAGER in project with ID: ${project_id}, maybe project with this id isnot exist`);
+            const err = new Error(`Server: Logined user does not as MANAGER in project with ID: ${project_id}`);
             err.status = 400;
             throw err;
         }
         //----------------------------------------------
-        const deleteTask = Tasks.destroy({
+        await Tasks.destroy({
             where: {
                 id: task_id
             }
@@ -223,5 +221,46 @@ router.post('/assign-task', validateToken, async (req, res) => {
 
 })
 
+
+// update task  -------------------------------
+// PUT: 
+router.put('/update', validateToken, async function (req, res) {
+    const taskData_update = req.body
+    const { project_id, task_id } = req.query;
+    const manager_id = req.user['user'].id;
+    try {
+        // check isManger -----------------------------
+        const manager_Joined = await ProjectJoineds.findOne({
+            where: {
+                project_id: project_id,
+                participant_id: manager_id,
+                isManager: true
+            }
+        })
+        if (!manager_Joined) {
+            const err = new Error(`Server: Logined user does not as MANAGER in project with ID: ${project_id}`);
+            err.status = 400;
+            throw err;
+        }
+        //----------------------------------------------
+
+        const task = Tasks.findByPk(task_id)
+        await Tasks.update({
+            name: taskData_update.name != null ? taskData_update.name : task.name,
+            description: taskData_update.description !== null ? taskData_update.description : task.description,
+            priority: taskData_update.priority !== null ? taskData_update.priority : task.priority,
+            type: taskData_update.type !== null ? taskData_update.type : task.type,
+            start_date: taskData_update.start_date !== null ? taskData_update.start_date : task.start_date,
+            end_date: taskData_update.end_date !== null ? taskData_update.end_date : task.start_date
+        }, { where: { id: task_id } });
+
+        return res.json({ success: true, message: `Updated task<id:${task_id} ` })
+    } catch (err) {
+        return res.status(err.status || 500).json({
+            success: false,
+            message: err.message
+        });
+    }
+})
 
 module.exports = router

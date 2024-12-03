@@ -92,12 +92,13 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         },
     },
-    {timestamps: false,
-        createdAt: false,
-        updatedAt: false,
-      }
-    
-);
+        {
+            timestamps: false,
+            createdAt: false,
+            updatedAt: false,
+        }
+
+    );
 
     // Association ===================================
     Users.associate = function (models) {
@@ -117,6 +118,10 @@ module.exports = (sequelize, DataTypes) => {
         Users.hasMany(models["PostComments"]), {
             foreignKey: "user_id"
         }
+        // join project request ---------------------
+        Users.hasMany(models["JoinRequests"], {
+            foreignKey: "user_id",
+        })
     }
     // ===============================================
 

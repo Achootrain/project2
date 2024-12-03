@@ -8,7 +8,7 @@ import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { Drawer, Popover } from "antd";
 import Register from "./page/Register";
-
+import ProjectDetail from "./page/ProjectDetail";
 function App() {
   const [openMenu, setOpenMenu] = useState(false);
   const closeMenu = () => {
@@ -22,13 +22,13 @@ function App() {
     setOpenNotification(newOpen);
   };
   const handleSignout = () => {
-    sessionStorage.removeItem('token')
-    window.location.href = '/page/Login';
-  }
+    sessionStorage.removeItem("token");
+    window.location.href = "/page/Login";
+  };
   return (
-    <div>
+    <div className="">
       <BrowserRouter>
-        <nav className="border-y-2 border-gray-200">
+        <nav className=" border-y-2 border-gray-200">
           <Drawer
             open={openMenu}
             onClose={closeMenu}
@@ -64,7 +64,10 @@ function App() {
                 </NavLink>
               </div>
               <div>
-                <button className="text-base pl-2 hover:opacity-50" onClick={handleSignout}>
+                <button
+                  className="text-base pl-2 hover:opacity-50"
+                  onClick={handleSignout}
+                >
                   Sign out
                 </button>
               </div>
@@ -162,6 +165,7 @@ function App() {
           <Route path="/page/Login" element={<Login />} />
           <Route path="/page/Profile" element={<Profile />} />
           <Route path="/page/Register" element={<Register />} />
+          <Route path="/page/project/:id" element={<ProjectDetail />} />
         </Routes>
       </BrowserRouter>
     </div>

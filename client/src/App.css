@@ -1,24 +1,77 @@
-@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.tuan-top-menu-item {
-  @apply cursor-pointer relative after:lg:absolute after:lg:bottom-0 after:lg:left-0 after:lg:bg-white after:lg:h-0.5 after:lg:w-0 
-    hover:after:lg:w-full hover:after:shadow-[0_0_15px_3px_rgba(255,255,255,0.6)] after:lg:transition-all after:lg:ease-in-out after:lg:duration-300;
+
+.slick-next:before {
+  position: absolute;
+  font-size: 30px; 
+  color: black; 
+  margin-left: 18px;
+  bottom: 12px;
+ 
 }
-.tuan-icon {
-  @apply w-5 h-5 inline-block;
+.slick-prev:before {
+  position: absolute;
+  font-size: 30px; 
+  color: black;
+  bottom: 12px;
+  margin-left: -50px;
 }
-.tuan-circle {
-  @apply text-xs text-center rounded-full px-1.5;
+
+.slick-slide > div {
+  margin: 0 10px;
+  padding: 0 0 40px 0;
 }
-.tuan-top-menu-expanded {
-  @apply absolute top-20 z-50 w-full text-center bg-white animate-slideDown text-gray-900 rounded-md;
+
+.slick-dots {
+  bottom: -20px; 
 }
-.tuan-sub-line {
-  @apply w-8 h-px bg-gray-300;
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-.tuan-sub-label {
-  @apply uppercase mx-4 tracking-widest  font-semibold text-[13px] text-center text-white;
+.otherCard {
+  animation: appear  linear ; 
+  animation-range: entry 0% cover 30%;
+  animation-timeline: view();
+ 
+}
+.filter-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.filter-controls button {
+  background-color: #f1f1f1;
+  border: none;
+  color: #333;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.875rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.filter-controls button:hover {
+  background-color: #e1e1e1;
+}
+
+.filter-controls button.active {
+  background-color: #0077b6;
+  color: white;
+}
+.custom-dropdown-menu .ant-dropdown {
+  width: 12px !important; /* Đặt độ rộng của dropdown */
 }

@@ -23,12 +23,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
   }
-  ,
-  {timestamps: true,
+    ,
+    {
+      timestamps: true,
       createdAt: true,
       updatedAt: false,
     }
-);
+  );
 
   // Association ===================================
   // ------------------------------------author: Hai

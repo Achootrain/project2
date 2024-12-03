@@ -22,10 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    status: {
-      type: DataTypes.ENUM("In Progress", "Done"),
-      allowNull: false,
-    },
+ 
     priority: {
       type: DataTypes.ENUM("1", "2", "3"),
       allowNull: false,
@@ -62,6 +59,10 @@ module.exports = (sequelize, DataTypes) => {
     });
     Tasks.hasMany(models["Reports"], {
       foreignKey: "task_id"
+    })
+    Tasks.belongsTo(models["Projects"], {
+      foreignKey: "project_id",
+       onDelete: 'CASCADE'
     })
   }
   //===================================================
